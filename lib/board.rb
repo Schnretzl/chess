@@ -33,9 +33,19 @@ class Board
 
   def add_pawns(color)
     if color == 'black'
-      @grid[1].map!.with_index { |_square, index| Pawn.new(index, 1, 'black') }
+      @grid[1].map!.with_index { |square, index| Pawn.new(index, 1, 'black') }
     elsif color == 'white'
-      @grid[6].map!.with_index { |_square, index| Pawn.new(index, 6, 'white') }
+      @grid[6].map!.with_index { |square, index| Pawn.new(index, 6, 'white') }
+    end
+  end
+
+  def add_rooks
+    if color == 'black'
+      @grid[0][0] = Rook.new(0, 0, 'black')
+      @grid[0][7] = Rook.new(0, 7, 'black')
+    elsif color == 'white'
+      @grid[7][0] = Rook.new(0, 0, 'white')
+      @grid[7][7] = Rook.new(0, 7, 'white')
     end
   end
   
