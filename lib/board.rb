@@ -1,11 +1,15 @@
 require_relative 'player'
+require_relative 'pieces/piece'
 Dir['/home/whendley/repos/chess/lib/pieces/piece_types/*.rb'].each { |file| require file }
 
 class Board
+  attr_reader :grid
+
   def initialize
     @grid = Array.new(8) { Array.new(8, ' ') }
     @white_king_threatened_squares = []
     @black_king_threatened_squares = []
+    Piece.set_board(self)
     add_white_pieces
     add_black_pieces
   end
