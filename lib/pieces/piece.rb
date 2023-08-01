@@ -5,5 +5,6 @@ class Piece
     @color = color
     @has_moved = false
     @squares_threatened = []
+    @valid_moves = []
   end
 end
