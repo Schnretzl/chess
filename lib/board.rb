@@ -91,3 +91,4 @@ class Board
 end
 
 test = Board.new
+test.grid[1][1].set_squares_threatened
