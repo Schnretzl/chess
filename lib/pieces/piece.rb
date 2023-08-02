@@ -13,4 +13,8 @@ class Piece
   def self.set_board(board)
     @@board = board
   end
+
+  def empty?(y, x)
+    @@board.grid[y][x] == ' '
+  end
 end
