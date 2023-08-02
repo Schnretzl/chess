@@ -1,7 +1,7 @@
-require 'piece'
+require_relative '../piece'
 
 class King < Piece
-  def initialize(x, y, color)
-    super(x, y, color)
+  def initialize(y, x, color)
+    super(y, x, color)
   end
 end

@@ -1,9 +1,9 @@
 class Piece
   @@board = nil
 
-  def initialize(x, y, color)
-    @x_pos = x
+  def initialize(y, x, color)
     @y_pos = y
+    @x_pos = x
     @color = color
     @has_moved = false
     @squares_threatened = []
