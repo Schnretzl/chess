@@ -14,6 +14,10 @@ class Board
     add_black_pieces
   end
 
+  def empty?(y, x)
+    @grid[y][x] == ' '
+  end
+
   private
 
   def add_black_pieces
@@ -91,4 +95,5 @@ class Board
 end
 
 test = Board.new
+f = test.empty?(1, 1)
 test.grid[1][1].set_squares_threatened
