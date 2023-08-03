@@ -14,7 +14,4 @@ class Piece
     @@board = board
   end
 
-  def empty?(y, x)
-    @@board.grid[y][x] == ' '
-  end
 end
