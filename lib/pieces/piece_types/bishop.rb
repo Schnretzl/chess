@@ -1,7 +1,12 @@
 require_relative '../piece'
+require_relative '../piece_movement/threatens_diagonally'
 
 class Bishop < Piece
-  def initialize(y, x, color)
+  include ThreatensDiagonally
+  def initialize(y, x, color, board)
     super(y, x, color)
+    set_squares_threatened(board)
+    # set_valid_moves
   end
+
 end
