@@ -1,4 +1,5 @@
 class Piece
+  attr_reader :y_pos, :x_pos, :color, :squares_threatened
 
   def initialize(y, x, color)
     @y_pos = y
@@ -7,6 +8,7 @@ class Piece
     @has_moved = false
     @squares_threatened = []
     @valid_moves = []
+    @valid_captures = []
   end
 
 end
