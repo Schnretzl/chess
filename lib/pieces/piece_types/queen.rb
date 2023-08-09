@@ -9,5 +9,11 @@ class Queen < Piece
     super(y, x, color)
     ThreatensOrthogonally.instance_method(:set_squares_threatened).bind(self).call(board)
     ThreatensDiagonally.instance_method(:set_squares_threatened).bind(self).call(board)
+    set_valid_moves(board)
+  end
+
+  def set_valid_moves(board)
+    @valid_moves = []
+    @squares_threatened.each { |square| @valid_moves << square }
   end
 end
