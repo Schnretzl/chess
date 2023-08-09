@@ -1,7 +1,6 @@
 require_relative '../piece'
 
 class Pawn < Piece
-  attr_reader :color
 
   def initialize(y, x, color, board)
     super(y, x, color)
@@ -20,9 +19,9 @@ class Pawn < Piece
     elsif @color == 'white'
       @squares_threatened = []
       @squares_threatened << [@y_pos - 1, @x_pos - 1] unless @y_pos == 0 || @x_pos == 0 ||
-                                                             board.grid[@y_pos - 1][@x_pos - 1]
+                                                             board.grid[@y_pos - 1][@x_pos - 1] != ' '
       @squares_threatened << [@y_pos - 1, @x_pos + 1] unless @y_pos == 0 || @x_pos == 7 ||
-                                                             board.grid[@y_pos - 1][@x_pos + 1]
+                                                             board.grid[@y_pos - 1][@x_pos + 1] != ' '
     end
   end
 
