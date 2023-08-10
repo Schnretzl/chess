@@ -11,6 +11,7 @@ class King < Piece
   end
 
   def set_squares_threatened(board)
+    @squares_threatened.clear
     @squares_threatened << [@y_pos - 1, @x_pos] unless @y_pos.zero? || board.grid[@y_pos - 1][@x_pos] != ' '
     @squares_threatened << [@y_pos - 1, @x_pos + 1] unless @y_pos.zero? || @x_pos == 7 ||
                                                            board.grid[@y_pos - 1][@x_pos + 1] != ' '
@@ -26,7 +27,7 @@ class King < Piece
   end
 
   def set_valid_moves(board)
-    @valid_moves = []
+    @valid_moves.clear
     if @color == 'black'
       @squares_threatened.each do |square|
         @valid_moves << square unless board.black_king_threatened_squares.include?(square)
