@@ -1,6 +1,8 @@
 require_relative '../piece'
 
 class King < Piece
+  attr_reader :is_in_check
+
   def initialize(y, x, color, board)
     super(y, x, color)
     set_squares_threatened(board)
@@ -29,6 +31,17 @@ class King < Piece
       @squares_threatened.each do |square|
         @valid_moves << square unless board.black_king_threatened_squares.include?(square)
       end
+    else
+      @squares_threatened.each do |square|
+        @valid_moves << square unless board.white_king_threatened_squares.include?(square)
+      end
     end
+  end
+
+  def set_check_status(board)
+    opponent_color = @color == 'white' ? 'black' : 'white'
+    return board.white_king_threatened_squares.include?([@y_pos, @x_pos]) if opponent_color == 'white'
+
+    board.black_king_threatened_squares.include?([@y_pos, @x_pos])
   end
 end
