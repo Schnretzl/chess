@@ -14,6 +14,8 @@ class Board
     @black_king_threatened_squares = []
     set_squares_threatening_king('white')
     set_squares_threatening_king('black')
+    @player1 = Player.new('white')
+    @player2 = Player.new('black')
   end
 
   def empty?(y, x)
@@ -35,18 +37,10 @@ class Board
   end
 
   def add_pawns(color)
-    if color == 'black'
-      @grid[1].map!.with_index do |_square, index|
-        pawn = Pawn.new(1, index, 'black', self)
-        @pieces << pawn
-        pawn
-      end
-    elsif color == 'white'
-      @grid[6].map!.with_index do |_square, index|
-        pawn = Pawn.new(6, index, 'white', self)
-        @pieces << pawn
-        pawn
-      end
+    row = color == 'white' ? 6 : 1
+    @grid[row].map!.with_index do |_square, index|
+      pawn = Pawn.new(row, index, color, self)
+      @pieces << pawn
     end
   end
 
@@ -57,7 +51,7 @@ class Board
     elsif color == 'white'
       @grid[7][4] = king = King.new(7, 4, 'white', self)
       @pieces << king
-    end 
+    end
   end
 
   def add_queen(color)
@@ -67,7 +61,7 @@ class Board
     elsif color == 'white'
       @grid[7][3] = queen = Queen.new(7, 3, 'white', self)
       @pieces << queen
-    end 
+    end
   end
 
   def add_bishops(color)
