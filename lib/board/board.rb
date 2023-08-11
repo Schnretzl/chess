@@ -1,5 +1,5 @@
-require_relative 'player'
-require_relative 'pieces/piece'
+require './lib/player/player'
+require './lib/pieces/piece'
 Dir['/home/whendley/repos/chess/lib/pieces/piece_types/*.rb'].each { |file| require file }
 
 class Board
@@ -41,17 +41,14 @@ class Board
     @grid[row].map!.with_index do |_square, index|
       pawn = Pawn.new(row, index, color, self)
       @pieces << pawn
+      pawn
     end
   end
 
   def add_king(color)
-    if color == 'black'
-      @grid[0][4] = king = King.new(0, 4, 'black', self)
-      @pieces << king
-    elsif color == 'white'
-      @grid[7][4] = king = King.new(7, 4, 'white', self)
-      @pieces << king
-    end
+    row = color == 'white' ? 7 : 0
+    @grid[row][4] = king = King.new(row, 4, color, self)
+    @pieces << king
   end
 
   def add_queen(color)
