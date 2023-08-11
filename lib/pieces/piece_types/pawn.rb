@@ -1,7 +1,6 @@
 require_relative '../piece'
 
 class Pawn < Piece
-
   def initialize(y, x, color, board)
     super(y, x, color)
     set_squares_threatened(board)
