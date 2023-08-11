@@ -52,53 +52,34 @@ class Board
   end
 
   def add_queen(color)
-    if color == 'black'
-      @grid[0][3] = queen = Queen.new(0, 3, 'black', self)
-      @pieces << queen
-    elsif color == 'white'
-      @grid[7][3] = queen = Queen.new(7, 3, 'white', self)
-      @pieces << queen
-    end
+    row = color == 'white' ? 7 : 0
+    @grid[row][3] = queen = Queen.new(row, 3, color, self)
+    @pieces << queen
   end
 
   def add_bishops(color)
-    if color == 'black'
-      @grid[0][2] = bishop1 = Bishop.new(0, 2, 'black', self)
-      @grid[0][5] = bishop2 = Bishop.new(0, 5, 'black', self)
-      @pieces.push(bishop1, bishop2)
-    elsif color == 'white'
-      @grid[7][2] = bishop1 = Bishop.new(7, 2, 'white', self)
-      @grid[7][5] = bishop2 = Bishop.new(7, 5, 'white', self)
-      @pieces.push(bishop1, bishop2)
-    end 
+    row = color == 'white' ? 7 : 0
+    @grid[row][2] = bishop1 = Bishop.new(row, 2, color, self)
+    @grid[row][5] = bishop2 = Bishop.new(row, 5, color, self)
+    @pieces.push(bishop1, bishop2)
   end
 
   def add_knights(color)
-    if color == 'black'
-      @grid[0][1] = knight1 = Knight.new(0, 1, 'black', self)
-      @grid[0][6] = knight2 = Knight.new(0, 6, 'black', self)
-      @pieces.push(knight1, knight2)
-    elsif color == 'white'
-      @grid[7][1] = knight1 = Knight.new(7, 1, 'white', self)
-      @grid[7][6] = knight2 = Knight.new(7, 6, 'white', self)
-      @pieces.push(knight1, knight2)
-    end 
+    row = color == 'white' ? 7 : 0
+    @grid[row][1] = knight1 = Knight.new(row, 1, color, self)
+    @grid[row][6] = knight2 = Knight.new(row, 6, color, self)
+    @pieces.push(knight1, knight2)
   end
 
   def add_rooks(color)
-    if color == 'black'
-      @grid[0][0] = rook1 = Rook.new(0, 0, 'black', self)
-      @grid[0][7] = rook2 = Rook.new(0, 7, 'black', self)
-      @pieces.push(rook1, rook2)
-    elsif color == 'white'
-      @grid[7][0] = rook1 = Rook.new(7, 0, 'white', self)
-      @grid[7][7] = rook2 = Rook.new(7, 7, 'white', self)
-      @pieces.push(rook1, rook2)
-    end
+    row = color == 'white' ? 7 : 0
+    @grid[row][0] = rook1 = Rook.new(row, 0, color, self)
+    @grid[row][7] = rook2 = Rook.new(row, 7, color, self)
+    @pieces.push(rook1, rook2)
   end
 
   def set_squares_threatening_king(color)
-    opponent_color = (color == 'white') ? 'black' : 'white'
+    opponent_color = color == 'white' ? 'black' : 'white'
     opponent_pieces = @pieces.select { |piece| piece.color == opponent_color }
 
     if color == 'white'
