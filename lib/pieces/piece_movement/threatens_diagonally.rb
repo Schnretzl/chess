@@ -1,9 +1,8 @@
 require_relative '../piece'
 
 module ThreatensDiagonally
-
   def set_squares_threatened(board)
-    @squares_threatened = []
+    @squares_threatened.clear
     add_squares_up_right(board)
     add_squares_up_left(board)
     add_squares_down_right(board)

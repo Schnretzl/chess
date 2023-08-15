@@ -1,9 +1,8 @@
 require_relative '../piece'
 
 module ThreatensOrthogonally
-
   def set_squares_threatened(board)
-    @squares_threatened = []
+    @squares_threatened.clear
     add_squares_up(board)
     add_squares_down(board)
     add_squares_left(board)
