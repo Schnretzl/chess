@@ -5,6 +5,7 @@ class Piece
     @y_pos = y
     @x_pos = x
     @color = color
+    @opponent_color = @color == 'white' ? 'black' : 'white'
     @has_moved = false
     @squares_threatened = []
     @valid_moves = []
