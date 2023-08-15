@@ -79,9 +79,7 @@ class Board
   end
 
   def set_squares_threatening_king(color)
-    opponent_color = color == 'white' ? 'black' : 'white'
-    opponent_pieces = @pieces.select { |piece| piece.color == opponent_color }
-
+    opponent_pieces = @pieces.select { |piece| piece.color == @opponent_color }
     if color == 'white'
       @white_king_threatened_squares = opponent_pieces.flat_map(&:squares_threatened).uniq
     elsif color == 'black'
