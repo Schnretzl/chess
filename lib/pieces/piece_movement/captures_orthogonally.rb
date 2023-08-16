@@ -1,5 +1,3 @@
-require_relative '../piece'
-
 module CapturesOrthogonally
   def set_valid_captures(board)
     @valid_captures.clear

@@ -1,5 +1,3 @@
-require_relative '../piece'
-
 module ThreatensOrthogonally
   def set_squares_threatened(board)
     @squares_threatened.clear
