@@ -35,7 +35,7 @@ module CapturesDiagonally
   def add_captures_down_right(board, opponent_color)
     row = @y_pos + 1
     column = @x_pos + 1
-    until !board.empty?(row, column) || column > 7 || row > 7
+    until !board.empty?(row, column) || row > 7 || column > 7
       row += 1
       column += 1
     end
@@ -46,11 +46,11 @@ module CapturesDiagonally
   def add_captures_down_left(board, opponent_color)
     row = @y_pos + 1
     column = @x_pos - 1
-    until !board.empty?(row, column) || column > 7 || row.negative?
-      row -= 1
-      column += 1
+    until !board.empty?(row, column) || row.negative? || column > 7
+      row += 1
+      column -= 1
     end
-    !row.negative? && column <= 7 && !board.empty?(row, column) && board.grid[row][column].color == opponent_color &&
+    row <= 7 && !column.negative? && !board.empty?(row, column) && board.grid[row][column].color == opponent_color &&
       (@valid_captures << [row, column])
   end
 end
