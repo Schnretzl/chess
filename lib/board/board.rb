@@ -3,7 +3,7 @@ require './lib/pieces/piece'
 Dir['/home/whendley/repos/chess/lib/pieces/piece_types/*.rb'].each { |file| require file }
 
 class Board
-  attr_reader :grid, :white_king_threatened_squares, :black_king_threatened_squares
+  attr_reader :grid, :white_king_threatened_squares, :black_king_threatened_squares, :pieces
 
   def initialize
     @grid = Array.new(8) { Array.new(8, ' ') }
@@ -24,7 +24,7 @@ class Board
     @grid[y][x] == ' '
   end
 
-  private
+  # private
 
   def add_pieces(color)
     add_pawns(color)
@@ -32,7 +32,6 @@ class Board
     add_bishops(color)
     add_knights(color)
     add_rooks(color)
-    set_squares_threatening_king(color)
     add_king(color)
   end
 
@@ -79,7 +78,7 @@ class Board
   end
 
   def set_squares_threatening_king(color)
-    opponent_pieces = @pieces.select { |piece| piece.color == @opponent_color }
+    opponent_pieces = @pieces.select { |piece| piece.color != color }
     if color == 'white'
       @white_king_threatened_squares = opponent_pieces.flat_map(&:squares_threatened).uniq
     elsif color == 'black'
@@ -90,9 +89,12 @@ class Board
 end
 
 test = Board.new
-test.grid[2][0] = Pawn.new(2, 0, 'white', test)
+test.grid[2][0] = test_rook = Rook.new(2, 0, 'white', test)
+test.pieces.push(test_rook)
 test.grid[1][1].set_valid_captures(test)
 test.grid[1][5] = ' '
 test.grid[5][5] = King.new(5, 5, 'black', test)
+test.set_squares_threatening_king('black')
+j=0
 # test.grid[5][5].add_squares_up
 # test.grid[1][1].set_squares_threatened
