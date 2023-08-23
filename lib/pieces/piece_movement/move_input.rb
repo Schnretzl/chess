@@ -1,19 +1,19 @@
 class MoveInput
-  def initialize(input_string)
+  def initialize
     @move_string = prompt_for_move
   end
 
   def prompt_for_move
     puts 'Enter your move:'
     move_string = STDIN.gets.chomp
-    if is_valid?(move_string)
-      #done
+    if valid?(move_string)
+      move_string
     else
       #get new move
     end
   end
 
-  def is_valid?(input_string)
+  def valid?(input_string)
     return false unless (2..6).include?(input_string.length)
 
     case input_string.length
