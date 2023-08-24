@@ -1,15 +1,15 @@
 class MoveInput
-  def initialize
-    @move_string = prompt_for_move
+  def initialize(move_string)
+    @move_string = move_string
   end
 
   def prompt_for_move
-    puts 'Enter your move:'
-    move_string = STDIN.gets.chomp
-    if valid?(move_string)
-      move_string
-    else
-      #get new move
+    loop do
+      puts 'Enter your move using algebraic notation:'
+      move_string = STDIN.gets.chomp
+      return move_string if valid?(move_string)
+
+      puts 'Invalid move format.\n'
     end
   end
 
@@ -33,15 +33,15 @@ class MoveInput
   end
 
   def convert_file_to_x(file)
-    if (a..h).include?(file)
-      97 - file.ord
+    if ('a'..'h').include?(file)
+      file.ord - 97
     else
       puts 'Invalid file'
     end
   end
 
   def convert_rank_to_y(rank)
-    if rank.between?(1, 7)
+    if rank.between?(1, 8)
       8 - rank
     else
       puts 'Invalid rank'
